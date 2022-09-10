@@ -13,5 +13,6 @@ class AnimalsURLSTestCase(TestCase):
     def test_route_use_view_index(self):
         "tests if the application uses the index function of the view"
         request = self.factory.get('/')
-        response = index(request)
-        self.assertEqual(response.status_code, 200)
+        with self.assertTemplateUsed('index.html'):
+            response = index(request)
+            self.assertEqual(response.status_code, 200)
